@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astha Kohli — Interior Designer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #f7f3ee;
+      --beige:   #ede6da;
+      --sand:    #d4c4a8;
+      --terr:    #b07d5b;
+      --brown:   #7a4f35;
+      --charcoal:#2c2c2c;
+      --dark:    #1a1a1a;
+      --white:   #ffffff;
+      --gold:    #c9a96e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 6%;
+      background: rgba(247,243,238,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--sand);
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,.08); }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600; letter-spacing: .05em;
+      color: var(--dark); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: .82rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--charcoal); font-weight: 500;
+      position: relative; padding-bottom: 3px;
+      transition: color .3s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1.5px; background: var(--terr); transition: width .3s;
+    }
+    .nav-links a:hover { color: var(--terr); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--charcoal); transition: .3s; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+      padding: 8rem 6% 4rem;
+      background: linear-gradient(135deg, var(--cream) 55%, var(--beige) 100%);
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; top: -120px; right: -120px;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, var(--sand) 0%, transparent 70%);
+      opacity: .45;
+    }
+    .hero-text { position: relative; z-index: 1; }
+    .hero-tag {
+      display: inline-block; font-size: .72rem; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--terr); font-weight: 600;
+      background: rgba(176,125,91,.1); padding: .35rem 1rem; border-radius: 50px;
+      margin-bottom: 1.4rem;
+    }
+    .hero-text h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 6vw, 5.5rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--dark); margin-bottom: 1.6rem;
+    }
+    .hero-text h1 em { font-style: italic; color: var(--terr); }
+    .hero-text p {
+      font-size: .97rem; line-height: 1.85; color: #555;
+      max-width: 480px; margin-bottom: 2.4rem;
+    }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      text-decoration: none; padding: .85rem 2.2rem;
+      font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
+      font-weight: 600; border-radius: 50px; transition: all .3s; cursor: pointer;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: var(--terr); color: var(--white);
+      border: 2px solid var(--terr);
+    }
+    .btn-primary:hover { background: var(--brown); border-color: var(--brown); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(176,125,91,.35); }
+    .btn-outline {
+      background: transparent; color: var(--terr);
+      border: 2px solid var(--terr);
+    }
+    .btn-outline:hover { background: var(--terr); color: var(--white); transform: translateY(-2px); }
+
+    .hero-image {
+      display: flex; justify-content: center; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .photo-frame {
+      width: clamp(260px, 30vw, 400px);
+      height: clamp(320px, 38vw, 490px);
+      border-radius: 60% 40% 55% 45% / 50% 45% 55% 50%;
+      overflow: hidden;
+      border: 6px solid var(--sand);
+      box-shadow: 0 30px 80px rgba(0,0,0,.15);
+      background: var(--beige);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: var(--sand); font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; letter-spacing: .1em; text-align: center; padding: 2rem;
+    }
+    .photo-placeholder svg { margin-bottom: 1rem; opacity: .5; }
+
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--sand);
+    }
+    .scroll-line {
+      width: 1px; height: 50px; background: linear-gradient(to bottom, var(--sand), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:.4; transform:scaleY(1)} 50%{opacity:1; transform:scaleY(1.2)} }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 7rem 6%; }
+    .section-label {
+      font-size: .72rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--terr); font-weight: 600; margin-bottom: .8rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400; color: var(--dark); margin-bottom: 3.5rem;
+      position: relative;
+    }
+    .section-title::after {
+      content: ''; display: block; width: 50px; height: 2px;
+      background: var(--terr); margin-top: .9rem;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: center;
+    }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .stat-card {
+      background: var(--cream); border-radius: 16px; padding: 1.6rem;
+      border-left: 3px solid var(--terr); transition: transform .3s, box-shadow .3s;
+    }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.08); }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 600; color: var(--terr);
+    }
+    .stat-label { font-size: .8rem; color: #777; letter-spacing: .05em; margin-top: .2rem; }
+    .about-text p { font-size: .97rem; line-height: 1.9; color: #555; margin-bottom: 1.2rem; }
+    .about-langs { display: flex; gap: 1rem; margin-top: 2rem; }
+    .lang-pill {
+      padding: .45rem 1.4rem; border-radius: 50px; font-size: .8rem;
+      font-weight: 500; background: var(--cream); border: 1px solid var(--sand);
+      color: var(--charcoal); letter-spacing: .05em;
+    }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--cream); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+    .skill-group h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 600; color: var(--dark); margin-bottom: 1.5rem;
+      padding-bottom: .7rem; border-bottom: 1px solid var(--sand);
+    }
+    .skill-item { margin-bottom: 1.2rem; }
+    .skill-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: .4rem; }
+    .skill-name { font-size: .88rem; color: var(--charcoal); font-weight: 500; }
+    .skill-bar { height: 5px; background: var(--sand); border-radius: 10px; overflow: hidden; }
+    .skill-fill {
+      height: 100%; background: linear-gradient(90deg, var(--terr), var(--gold));
+      border-radius: 10px; width: 0;
+      transition: width 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    .tag-list { display: flex; flex-wrap: wrap; gap: .7rem; }
+    .skill-tag {
+      padding: .45rem 1.1rem; border-radius: 50px; font-size: .8rem;
+      background: var(--white); border: 1px solid var(--sand); color: var(--charcoal);
+      font-weight: 500; transition: all .3s;
+    }
+    .skill-tag:hover { background: var(--terr); color: var(--white); border-color: var(--terr); }
+
+    /* ─── PROJECTS ─── */
+    #projects { background: var(--white); }
+
+    /* Project nav tabs */
+    .proj-nav {
+      display: flex; gap: 0; flex-wrap: wrap;
+      border-bottom: 2px solid var(--beige); margin-bottom: 3rem;
+    }
+    .proj-tab {
+      padding: .85rem 1.6rem; font-size: .78rem; letter-spacing: .12em;
+      text-transform: uppercase; font-weight: 600; color: #999;
+      background: none; border: none; cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -2px;
+      transition: color .25s, border-color .25s; white-space: nowrap;
+    }
+    .proj-tab:hover { color: var(--terr); }
+    .proj-tab.active { color: var(--terr); border-bottom-color: var(--terr); }
+
+    /* Project panel */
+    .proj-panel { display: none; animation: fadeIn .4s ease; }
+    .proj-panel.active { display: block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+    /* Brief bar */
+    .proj-brief {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem;
+      background: var(--cream); border-radius: 16px; padding: 1.6rem 2rem;
+      margin-bottom: 2.4rem; border: 1px solid var(--beige);
+    }
+    .brief-item { }
+    .brief-label { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--terr); font-weight: 600; margin-bottom: .3rem; }
+    .brief-value { font-size: .9rem; color: var(--dark); font-weight: 500; line-height: 1.4; }
+
+    /* Gallery tabs inside project */
+    .gallery-tabs {
+      display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 1.4rem;
+    }
+    .gtab {
+      padding: .45rem 1.1rem; font-size: .73rem; letter-spacing: .1em;
+      text-transform: uppercase; font-weight: 600; border-radius: 50px;
+      border: 1.5px solid var(--sand); background: transparent;
+      color: #888; cursor: pointer; transition: all .25s;
+    }
+    .gtab:hover { border-color: var(--terr); color: var(--terr); }
+    .gtab.active { background: var(--terr); color: #fff; border-color: var(--terr); }
+
+    /* Gallery grid */
+    .gallery-view { display: none; }
+    .gallery-view.active { display: block; }
+
+    .gallery-grid {
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+    }
+    .gallery-grid.cols-2 { grid-template-columns: repeat(2,1fr); }
+    .gallery-grid.cols-3 { grid-template-columns: repeat(3,1fr); }
+
+    .gitem {
+      border-radius: 12px; overflow: hidden; cursor: pointer;
+      position: relative; background: var(--beige);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .gitem:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,.12); }
+    .gitem.span2 { grid-column: span 2; }
+
+    /* image slot — shows real <img> or placeholder SVG */
+    .gitem-img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+      background: var(--beige);
+    }
+    .gitem-img.tall { aspect-ratio: 3/4; }
+    .gitem-img.wide { aspect-ratio: 16/7; }
+    .gitem-img.square { aspect-ratio: 1/1; }
+
+    /* placeholder when no real image */
+    .img-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--beige), var(--sand));
+      color: var(--terr); gap: .6rem; padding: 1.5rem;
+    }
+    .img-placeholder.tall { aspect-ratio: 3/4; }
+    .img-placeholder.wide { aspect-ratio: 16/7; }
+    .img-placeholder svg { width: 36px; height: 36px; opacity: .5; }
+    .img-placeholder .ph-label {
+      font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+      font-weight: 600; color: #888; text-align: center;
+    }
+    .img-placeholder .ph-path {
+      font-size: .65rem; color: #aaa; font-family: monospace; text-align: center;
+      background: rgba(0,0,0,.06); padding: .2rem .6rem; border-radius: 4px; word-break: break-all;
+    }
+
+    .gitem-cap {
+      padding: .7rem 1rem; font-size: .78rem; color: #666;
+      font-weight: 500; letter-spacing: .03em;
+    }
+
+    /* Lightbox */
+    .lb-overlay {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(10,8,6,.92); backdrop-filter: blur(8px);
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .lb-overlay.open { display: flex; }
+    .lb-box {
+      max-width: 1000px; width: 100%; position: relative; text-align: center;
+    }
+    .lb-img {
+      max-width: 100%; max-height: 80vh; object-fit: contain;
+      border-radius: 8px; box-shadow: 0 40px 100px rgba(0,0,0,.5);
+    }
+    .lb-caption {
+      margin-top: 1rem; color: rgba(255,255,255,.65);
+      font-size: .85rem; letter-spacing: .05em;
+    }
+    .lb-close {
+      position: absolute; top: -2.5rem; right: 0;
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,.7); font-size: 1.6rem; line-height: 1;
+      transition: color .2s;
+    }
+    .lb-close:hover { color: #fff; }
+    .lb-prev, .lb-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+      color: #fff; font-size: 1.4rem; width: 44px; height: 44px;
+      border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .2s; z-index: 1;
+    }
+    .lb-prev { left: -3.5rem; }
+    .lb-next { right: -3.5rem; }
+    .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,.22); }
+
+    /* GitHub guide callout */
+    .gh-guide {
+      margin-top: 3.5rem; border-radius: 20px; overflow: hidden;
+      border: 1.5px solid var(--beige);
+    }
+    .gh-guide-header {
+      background: var(--dark); color: #fff;
+      padding: 1.2rem 2rem; display: flex; align-items: center; gap: 1rem;
+      cursor: pointer; user-select: none;
+    }
+    .gh-guide-header svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .gh-guide-header h4 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+      font-weight: 400; flex: 1;
+    }
+    .gh-guide-header .gh-badge {
+      font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+      background: var(--gold); color: var(--dark); padding: .25rem .8rem;
+      border-radius: 50px; font-weight: 700;
+    }
+    .gh-guide-body {
+      background: var(--cream); padding: 2rem 2.2rem;
+      display: none;
+    }
+    .gh-guide-body.open { display: block; }
+    .gh-steps { display: flex; flex-direction: column; gap: 1.4rem; counter-reset: steps; }
+    .gh-step {
+      display: grid; grid-template-columns: 36px 1fr; gap: 1rem; align-items: start;
+    }
+    .gh-step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--terr); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; font-weight: 700; flex-shrink: 0; margin-top: .1rem;
+    }
+    .gh-step-content h5 { font-size: .92rem; font-weight: 700; color: var(--dark); margin-bottom: .35rem; }
+    .gh-step-content p { font-size: .85rem; color: #666; line-height: 1.7; }
+    .gh-step-content code {
+      display: block; background: var(--dark); color: #c9a96e;
+      padding: .7rem 1rem; border-radius: 8px; font-size: .8rem;
+      margin-top: .6rem; word-break: break-all; line-height: 1.7;
+      font-family: 'Courier New', monospace;
+    }
+    .gh-step-content code span { color: #7ec8a4; }
+    .gh-step-content .note {
+      margin-top: .5rem; font-size: .78rem; color: var(--terr);
+      background: rgba(176,125,91,.08); border-left: 3px solid var(--terr);
+      padding: .4rem .8rem; border-radius: 0 6px 6px 0;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    #experience { background: var(--cream); }
+    .timeline { position: relative; padding-left: 2.5rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 2px; background: linear-gradient(to bottom, var(--terr), var(--sand));
+    }
+    .timeline-item { position: relative; margin-bottom: 3rem; }
+    .timeline-dot {
+      position: absolute; left: -2.65rem; top: 6px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--terr); border: 3px solid var(--cream);
+      box-shadow: 0 0 0 2px var(--terr);
+    }
+    .timeline-date {
+      font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--terr); font-weight: 600; margin-bottom: .4rem;
+    }
+    .timeline-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600; color: var(--dark); margin-bottom: .3rem;
+    }
+    .timeline-item h4 { font-size: .9rem; color: var(--terr); font-weight: 500; margin-bottom: .8rem; }
+    .timeline-item p { font-size: .9rem; color: #666; line-height: 1.8; }
+
+    /* ─── EDUCATION ─── */
+    #education { background: var(--white); }
+    .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .edu-card {
+      background: var(--cream); border-radius: 20px; padding: 2.2rem;
+      border-top: 4px solid var(--terr); transition: transform .3s, box-shadow .3s;
+    }
+    .edu-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,.08); }
+    .edu-year {
+      font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--terr); font-weight: 600; margin-bottom: .6rem;
+    }
+    .edu-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 600; color: var(--dark); margin-bottom: .3rem;
+    }
+    .edu-card p { font-size: .88rem; color: #777; }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--dark); }
+    #contact .section-label { color: var(--gold); }
+    #contact .section-title { color: var(--white); }
+    #contact .section-title::after { background: var(--gold); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+    .contact-info p { font-size: .97rem; color: rgba(255,255,255,.65); line-height: 1.9; margin-bottom: 2.5rem; }
+    .contact-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 1rem;
+      color: rgba(255,255,255,.8); font-size: .9rem;
+      text-decoration: none; transition: color .3s;
+    }
+    .contact-item:hover { color: var(--gold); }
+    .contact-icon {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background .3s, border-color .3s;
+    }
+    .contact-item:hover .contact-icon { background: rgba(201,169,110,.2); border-color: var(--gold); }
+    .contact-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: .5rem; }
+    .form-group label { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); font-weight: 500; }
+    .form-group input, .form-group textarea {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 10px; padding: .9rem 1.2rem;
+      font-family: 'Jost', sans-serif; font-size: .92rem; color: var(--white);
+      outline: none; transition: border-color .3s, background .3s;
+      resize: none;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,.3); }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--gold); background: rgba(255,255,255,.09);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .btn-gold {
+      background: var(--gold); color: var(--dark); border: 2px solid var(--gold);
+      font-weight: 700;
+    }
+    .btn-gold:hover { background: transparent; color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,169,110,.3); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #111; padding: 2rem 6%;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    footer p { font-size: .8rem; color: rgba(255,255,255,.35); }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: rgba(255,255,255,.5); letter-spacing: .05em;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up { opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: .15s; }
+    .fade-up:nth-child(3) { transition-delay: .3s; }
+    .fade-up:nth-child(4) { transition-delay: .45s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; text-align: center; padding-top: 7rem; }
+      .hero-image { display: none; }
+      .hero-text p { max-width: 100%; }
+      .btn-group { justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:nth-child(1) { grid-column: span 1; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column; gap: 1.2rem;
+        position: absolute; top: 100%; left: 0; width: 100%;
+        background: var(--cream); padding: 2rem 6%; border-top: 1px solid var(--sand);
+      }
+      .hamburger { display: flex; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════ NAV ════════ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">AK</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section id="hero">
+  <div class="hero-text">
+    <span class="hero-tag">Interior Designer · Dehradun, India</span>
+    <h1>Astha<br /><em>Kohli</em></h1>
+    <p>
+      Passionate about bringing spaces to life through art and functionality.
+      With expertise in design software and a love for travel, I create
+      visually stunning and practical designs — blending artistic vision with
+      technical skill to make every project uniquely captivating.
+    </p>
+    <div class="btn-group">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="photo-frame">
+      <div class="photo-placeholder">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+        Astha Kohli
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ════════ ABOUT ════════ -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <p class="section-label">Who I Am</p>
+      <h2 class="section-title">Crafting spaces<br />that inspire</h2>
+      <div class="about-stats">
+        <div class="stat-card fade-up">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years of Education</div>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Institutional Projects</div>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Design Softwares</div>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Languages</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-text fade-up">
+      <p>
+        I am an Interior Designer with a Bachelor's degree from Medhavi University,
+        Sikkim and a specialisation from INIFD, Gurugram. My design philosophy
+        centres on creating spaces that are both visually stunning and deeply functional.
+      </p>
+      <p>
+        During my internship at <strong>Finearch Studio Pvt Ltd</strong>, I contributed to
+        a diverse range of residential and commercial projects — honing my ability to
+        translate concepts into compelling spatial experiences.
+      </p>
+      <p>
+        Whether it's a cozy studio apartment or a vibrant restaurant, I approach every
+        brief with curiosity, precision, and a passion for detail.
+      </p>
+      <div class="about-langs">
+        <span class="lang-pill">English</span>
+        <span class="lang-pill">Hindi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SKILLS ════════ -->
+<section id="skills">
+  <p class="section-label">What I Bring</p>
+  <h2 class="section-title">Skills &amp; Tools</h2>
+  <div class="skills-grid">
+
+    <!-- Software -->
+    <div class="skill-group fade-up">
+      <h3>Software Proficiency</h3>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">AutoCAD</span><span style="font-size:.78rem;color:var(--terr)">Advanced</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">SketchUp</span><span style="font-size:.78rem;color:var(--terr)">Advanced</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">V-Ray</span><span style="font-size:.78rem;color:var(--terr)">Intermediate</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="65%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">Adobe Photoshop</span><span style="font-size:.78rem;color:var(--terr)">Working</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="45%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span class="skill-name">Microsoft PowerPoint</span><span style="font-size:.78rem;color:var(--terr)">Working</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="45%"></div></div>
+      </div>
+    </div>
+
+    <!-- Professional -->
+    <div class="skill-group fade-up">
+      <h3>Professional Skills</h3>
+      <div class="tag-list">
+        <span class="skill-tag">Concept Development</span>
+        <span class="skill-tag">Ideation</span>
+        <span class="skill-tag">Space Planning</span>
+        <span class="skill-tag">Team Work</span>
+        <span class="skill-tag">Communication</span>
+        <span class="skill-tag">Presentation Skills</span>
+      </div>
+    </div>
+
+    <!-- Creative -->
+    <div class="skill-group fade-up">
+      <h3>Creative Skills</h3>
+      <div class="tag-list">
+        <span class="skill-tag">Photography</span>
+        <span class="skill-tag">Sketching</span>
+        <span class="skill-tag">Mood Boarding</span>
+        <span class="skill-tag">Colour Theory</span>
+        <span class="skill-tag">Material Selection</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════ PROJECTS ════════ -->
+<section id="projects">
+  <p class="section-label">My Work</p>
+  <h2 class="section-title">Institutional Projects</h2>
+
+  <!-- Project switcher tabs -->
+  <nav class="proj-nav" role="tablist">
+    <button class="proj-tab active" onclick="switchProject('workspace',this)">A. Workspace Design</button>
+    <button class="proj-tab" onclick="switchProject('hospitality',this)">B. Hospitality</button>
+    <button class="proj-tab" onclick="switchProject('duplex',this)">C. Duplex 3BHK</button>
+    <button class="proj-tab" onclick="switchProject('studio',this)">D. Studio Apartment</button>
+    <button class="proj-tab" onclick="switchProject('furniture',this)">E. Furniture Design</button>
+    <button class="proj-tab" onclick="switchProject('participation',this)">F. Participation</button>
+  </nav>
+
+  <!-- ── A. WORKSPACE DESIGN ── -->
+  <div class="proj-panel active" id="panel-workspace">
+    <div class="proj-brief">
+      <div class="brief-item"><div class="brief-label">Project</div><div class="brief-value">Advertisement Office</div></div>
+      <div class="brief-item"><div class="brief-label">Client</div><div class="brief-value">Epic India Group</div></div>
+      <div class="brief-item"><div class="brief-label">Type / Area</div><div class="brief-value">Workspace · 3,500 sqft</div></div>
+      <div class="brief-item"><div class="brief-label">Role</div><div class="brief-value">Concept · Drawings · 3D Viz</div></div>
+    </div>
+    <p style="font-size:.92rem;color:#666;line-height:1.9;margin-bottom:1.8rem;max-width:780px;">
+      A versatile workspace for an advertising agency — designed around the <strong>Yin &amp; Yang</strong> philosophy. The Yin side uses open, all-white spaces with sun-orange highlights and ceiling strips. The Yang side uses closed spaces in black &amp; grey with teal accents, a stone-look moon-crater wallpaper in the Director's room, and star-trail pendant lights.
+    </p>
+    <div class="gallery-tabs">
+      <button class="gtab active" onclick="switchGallery('ws','ideation',this)">Ideation &amp; Concept</button>
+      <button class="gtab" onclick="switchGallery('ws','drawings',this)">Floor Plans &amp; Drawings</button>
+      <button class="gtab" onclick="switchGallery('ws','3d',this)">3D Views &amp; Renders</button>
+    </div>
+
+    <!-- Ideation -->
+    <div class="gallery-view active" id="gv-ws-ideation">
+      <div class="gallery-grid cols-3">
+        <div class="gitem span2" onclick="openLightbox('ws-ideation',0)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-label">Concept Board — The Yin</span>
+            <span class="ph-path">images/workspace/concept-yin.jpg</span>
+          </div>
+          <div class="gitem-cap">The Yin — Open, White &amp; Orange Sun Palette</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('ws-ideation',1)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-label">Concept Board — The Yang</span>
+            <span class="ph-path">images/workspace/concept-yang.jpg</span>
+          </div>
+          <div class="gitem-cap">The Yang — Black, Grey &amp; Teal Palette</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('ws-ideation',2)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-label">Material &amp; Furniture Moodboard</span>
+            <span class="ph-path">images/workspace/moodboard.jpg</span>
+          </div>
+          <div class="gitem-cap">Material &amp; Furniture Selections</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('ws-ideation',3)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-label">Colour Story Board</span>
+            <span class="ph-path">images/workspace/colour-story.jpg</span>
+          </div>
+          <div class="gitem-cap">Colour Story — Orange, White, Black, Teal</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drawings -->
+    <div class="gallery-view" id="gv-ws-drawings">
+      <div class="gallery-grid cols-2">
+        <div class="gitem" onclick="openLightbox('ws-drawings',0)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span class="ph-label">Architectural Layout</span>
+            <span class="ph-path">images/workspace/arch-layout.jpg</span>
+          </div>
+          <div class="gitem-cap">Architectural Layout — AutoCAD</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('ws-drawings',1)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <span class="ph-label">Furniture Layout</span>
+            <span class="ph-path">images/workspace/furniture-layout.jpg</span>
+          </div>
+          <div class="gitem-cap">Furniture Layout — AutoCAD</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('ws-drawings',2)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <span class="ph-label">Flooring Plan</span>
+            <span class="ph-path">images/workspace/flooring-plan.jpg</span>
+          </div>
+          <div class="gitem-cap">Flooring Plan</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('ws-drawings',3)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+            <span class="ph-label">Ceiling Plan</span>
+            <span class="ph-path">images/workspace/ceiling-plan.jpg</span>
+          </div>
+          <div class="gitem-cap">Ceiling Plan (Open Ceiling Detail)</div>
+        </div>
+        <div class="gitem span2" onclick="openLightbox('ws-drawings',4)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="8 8 3 12 8 16"/><polyline points="16 8 21 12 16 16"/></svg>
+            <span class="ph-label">Elevations — All Walls</span>
+            <span class="ph-path">images/workspace/elevations.jpg</span>
+          </div>
+          <div class="gitem-cap">Sectional Elevations — White Marble, Stone Veneer, Acoustic Fabric, MDF Boards</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D Views -->
+    <div class="gallery-view" id="gv-ws-3d">
+      <div class="gallery-grid cols-3">
+        <div class="gitem span2" onclick="openLightbox('ws-3d',0)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <span class="ph-label">Reception / Lounge Area — 3D Render</span>
+            <span class="ph-path">images/workspace/3d-reception.jpg</span>
+          </div>
+          <div class="gitem-cap">Reception &amp; Lounge — The Yin Side</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('ws-3d',1)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/></svg>
+            <span class="ph-label">Director's Room</span>
+            <span class="ph-path">images/workspace/3d-directors.jpg</span>
+          </div>
+          <div class="gitem-cap">Director's Room — Stone Wall, Navy Desk</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('ws-3d',2)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
+            <span class="ph-label">Open Workstation Area</span>
+            <span class="ph-path">images/workspace/3d-workstations.jpg</span>
+          </div>
+          <div class="gitem-cap">Open Workstation Area</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('ws-3d',3)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
+            <span class="ph-label">Meeting Area / Pantry</span>
+            <span class="ph-path">images/workspace/3d-meeting.jpg</span>
+          </div>
+          <div class="gitem-cap">Meeting Area &amp; Pantry</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('ws-3d',4)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
+            <span class="ph-label">Phone Booths / Pod Stations</span>
+            <span class="ph-path">images/workspace/3d-pods.jpg</span>
+          </div>
+          <div class="gitem-cap">Focus Pods &amp; Phone Booths</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('ws-3d',5)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
+            <span class="ph-label">TV Wall &amp; Breakout Space</span>
+            <span class="ph-path">images/workspace/3d-breakout.jpg</span>
+          </div>
+          <div class="gitem-cap">TV Feature Wall &amp; Breakout Space</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end workspace panel -->
+
+  <!-- ── B. HOSPITALITY ── -->
+  <div class="proj-panel" id="panel-hospitality">
+    <div class="proj-brief">
+      <div class="brief-item"><div class="brief-label">Project</div><div class="brief-value">Kalsang Restaurant</div></div>
+      <div class="brief-item"><div class="brief-label">Client</div><div class="brief-value">Kalsang, Dehradun</div></div>
+      <div class="brief-item"><div class="brief-label">Type / Area</div><div class="brief-value">Restaurant · 2,400 sqft</div></div>
+      <div class="brief-item"><div class="brief-label">Concept</div><div class="brief-value">Asian Eclecticism</div></div>
+    </div>
+    <p style="font-size:.92rem;color:#666;line-height:1.9;margin-bottom:1.8rem;max-width:780px;">
+      A theme-based restaurant designed for 30–40 covers with a bold <strong>Asian Eclecticism</strong> concept — vibrant reds and golds, arched decorative panels, hanging lanterns, and richly layered textures. The layout addresses zoning, customer circulation, staff flow, and kitchen efficiency across 2,400 sqft.
+    </p>
+    <div class="gallery-tabs">
+      <button class="gtab active" onclick="switchGallery('hosp','plans',this)">Plans &amp; Elevations</button>
+      <button class="gtab" onclick="switchGallery('hosp','3d',this)">3D Views</button>
+    </div>
+
+    <div class="gallery-view active" id="gv-hosp-plans">
+      <div class="gallery-grid cols-3">
+        <div class="gitem" onclick="openLightbox('hosp-plans',0)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <span class="ph-label">Bare Architectural Plan</span>
+            <span class="ph-path">images/hospitality/arch-plan.jpg</span>
+          </div>
+          <div class="gitem-cap">Bare Plan — 2,400 sqft</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('hosp-plans',1)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <span class="ph-label">Furniture Layout</span>
+            <span class="ph-path">images/hospitality/furniture-layout.jpg</span>
+          </div>
+          <div class="gitem-cap">Furniture Layout — 30-40 Covers</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('hosp-plans',2)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+            <span class="ph-label">Flooring Plan</span>
+            <span class="ph-path">images/hospitality/flooring-plan.jpg</span>
+          </div>
+          <div class="gitem-cap">Flooring Plan</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('hosp-plans',3)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+            <span class="ph-label">Ceiling Plan</span>
+            <span class="ph-path">images/hospitality/ceiling-plan.jpg</span>
+          </div>
+          <div class="gitem-cap">Ceiling Plan</div>
+        </div>
+        <div class="gitem span2" onclick="openLightbox('hosp-plans',4)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="8 8 3 12 8 16"/><polyline points="16 8 21 12 16 16"/></svg>
+            <span class="ph-label">Elevations — Dining Wall</span>
+            <span class="ph-path">images/hospitality/elevations.jpg</span>
+          </div>
+          <div class="gitem-cap">Sectional Elevations — Arched Panels, Asian Pattern Detail</div>
+        </div>
+        <div class="gitem span2" onclick="openLightbox('hosp-plans',5)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83"/></svg>
+            <span class="ph-label">Concept &amp; Asian Eclecticism Board</span>
+            <span class="ph-path">images/hospitality/concept-board.jpg</span>
+          </div>
+          <div class="gitem-cap">Asian Eclecticism — Concept &amp; Moodboard</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-view" id="gv-hosp-3d">
+      <div class="gallery-grid cols-2">
+        <div class="gitem" onclick="openLightbox('hosp-3d',0)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/></svg>
+            <span class="ph-label">Main Dining Area — 3D View</span>
+            <span class="ph-path">images/hospitality/3d-main-dining.jpg</span>
+          </div>
+          <div class="gitem-cap">Main Dining — Arched Panels, Red &amp; Gold</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('hosp-3d',1)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
+            <span class="ph-label">Counter / Display Wall</span>
+            <span class="ph-path">images/hospitality/3d-counter.jpg</span>
+          </div>
+          <div class="gitem-cap">Counter &amp; Red Tile Display Wall</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('hosp-3d',2)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
+            <span class="ph-label">Seating Bay — 3D SketchUp</span>
+            <span class="ph-path">images/hospitality/3d-seating.jpg</span>
+          </div>
+          <div class="gitem-cap">Seating Bay — Wooden Beams, Lanterns</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('hosp-3d',3)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
+            <span class="ph-label">Washroom Design</span>
+            <span class="ph-path">images/hospitality/3d-washroom.jpg</span>
+          </div>
+          <div class="gitem-cap">Washroom — Mosaic Tile, Round Mirrors, Pink Vessels</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end hospitality panel -->
+
+  <!-- ── C. DUPLEX 3BHK ── -->
+  <div class="proj-panel" id="panel-duplex">
+    <div class="proj-brief">
+      <div class="brief-item"><div class="brief-label">Client</div><div class="brief-value">Mr. Amit Khanna (Dentist)</div></div>
+      <div class="brief-item"><div class="brief-label">Type</div><div class="brief-value">3BHK Residential Duplex</div></div>
+      <div class="brief-item"><div class="brief-label">Family</div><div class="brief-value">4 members + Home Clinic</div></div>
+      <div class="brief-item"><div class="brief-label">Spaces</div><div class="brief-value">Clinic, 3 Beds, Kitchen, Backyard</div></div>
+    </div>
+    <p style="font-size:.92rem;color:#666;line-height:1.9;margin-bottom:1.8rem;max-width:780px;">
+      A 3BHK duplex designed for a dentist's family with a <strong>teal &amp; grey signature palette</strong>. The ground floor integrates a home clinic, living, kitchen and dining. The first floor features a master bedroom, daughter's room, son's room, lounge area, and backyard. Materials include stone-finish feature walls, teal joinery, and patterned flooring.
+    </p>
+    <div class="gallery-tabs">
+      <button class="gtab active" onclick="switchGallery('dup','plans',this)">Floor Plans &amp; Drawings</button>
+      <button class="gtab" onclick="switchGallery('dup','concept',this)">Concept Boards</button>
+      <button class="gtab" onclick="switchGallery('dup','3d',this)">3D Renders</button>
+    </div>
+
+    <div class="gallery-view active" id="gv-dup-plans">
+      <div class="gallery-grid cols-3">
+        <div class="gitem" onclick="openLightbox('dup-plans',0)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <span class="ph-label">Ground Floor — Arch. Layout</span>
+            <span class="ph-path">images/duplex/gf-arch-layout.jpg</span>
+          </div>
+          <div class="gitem-cap">Ground Floor — Architectural Layout</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('dup-plans',1)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <span class="ph-label">First Floor — Arch. Layout</span>
+            <span class="ph-path">images/duplex/ff-arch-layout.jpg</span>
+          </div>
+          <div class="gitem-cap">First Floor — Architectural Layout</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('dup-plans',2)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+            <span class="ph-label">Flooring Plan</span>
+            <span class="ph-path">images/duplex/flooring-plan.jpg</span>
+          </div>
+          <div class="gitem-cap">Flooring Plan</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('dup-plans',3)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+            <span class="ph-label">Ceiling Plan</span>
+            <span class="ph-path">images/duplex/ceiling-plan.jpg</span>
+          </div>
+          <div class="gitem-cap">Ceiling Plan</div>
+        </div>
+        <div class="gitem span2" onclick="openLightbox('dup-plans',4)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="8 8 3 12 8 16"/></svg>
+            <span class="ph-label">Ground Floor Elevations</span>
+            <span class="ph-path">images/duplex/gf-elevations.jpg</span>
+          </div>
+          <div class="gitem-cap">Ground Floor Sectional Elevations AA′ BB′ CC′ DD′</div>
+        </div>
+        <div class="gitem span2" onclick="openLightbox('dup-plans',5)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="16 8 21 12 16 16"/></svg>
+            <span class="ph-label">First Floor Elevations</span>
+            <span class="ph-path">images/duplex/ff-elevations.jpg</span>
+          </div>
+          <div class="gitem-cap">First Floor Sectional Elevations AA′-1 BB′-1 CC′-1 DD′-1</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-view" id="gv-dup-concept">
+      <div class="gallery-grid cols-2">
+        <div class="gitem" onclick="openLightbox('dup-concept',0)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/></svg>
+            <span class="ph-label">Daughter's Bedroom — Concept</span>
+            <span class="ph-path">images/duplex/concept-daughters-room.jpg</span>
+          </div>
+          <div class="gitem-cap">Daughter's Bedroom — Blue &amp; Floral Palette</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('dup-concept',1)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/></svg>
+            <span class="ph-label">Master Bedroom — Concept</span>
+            <span class="ph-path">images/duplex/concept-master.jpg</span>
+          </div>
+          <div class="gitem-cap">Master Bedroom — Burgundy &amp; Pink Palette</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('dup-concept',2)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/></svg>
+            <span class="ph-label">Powder Room — Concept</span>
+            <span class="ph-path">images/duplex/concept-powder-room.jpg</span>
+          </div>
+          <div class="gitem-cap">Powder Room — Black Checker, Tropical Wallpaper</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('dup-concept',3)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/></svg>
+            <span class="ph-label">Living Room — Concept</span>
+            <span class="ph-path">images/duplex/concept-living.jpg</span>
+          </div>
+          <div class="gitem-cap">Living Room — Dark Green, Wood &amp; Stone</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-view" id="gv-dup-3d">
+      <div class="gallery-grid cols-3">
+        <div class="gitem span2" onclick="openLightbox('dup-3d',0)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
+            <span class="ph-label">Son's Bedroom — 3D Render</span>
+            <span class="ph-path">images/duplex/3d-sons-room.jpg</span>
+          </div>
+          <div class="gitem-cap">Son's Bedroom — Teal Shelves, Stone Texture, V-Ray Render</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('dup-3d',1)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
+            <span class="ph-label">SketchUp 3D Model</span>
+            <span class="ph-path">images/duplex/3d-sketchup-model.jpg</span>
+          </div>
+          <div class="gitem-cap">SketchUp 3D Modelling Views</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('dup-3d',2)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/></svg>
+            <span class="ph-label">Room View — Study Corner</span>
+            <span class="ph-path">images/duplex/3d-study.jpg</span>
+          </div>
+          <div class="gitem-cap">Study Corner with City View</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end duplex panel -->
+
+  <!-- ── D. STUDIO DESIGN ── -->
+  <div class="proj-panel" id="panel-studio">
+    <div class="proj-brief">
+      <div class="brief-item"><div class="brief-label">Client</div><div class="brief-value">Mr. Vinit Sheoran (Student)</div></div>
+      <div class="brief-item"><div class="brief-label">Type / Area</div><div class="brief-value">Studio Apartment · 3,500 sqft</div></div>
+      <div class="brief-item"><div class="brief-label">Layout</div><div class="brief-value">Open Plan — Living, Bed, Kitchen</div></div>
+      <div class="brief-item"><div class="brief-label">Palette</div><div class="brief-value">PANTONE Orange &amp; Navy Blue</div></div>
+    </div>
+    <p style="font-size:.92rem;color:#666;line-height:1.9;margin-bottom:1.8rem;max-width:780px;">
+      A chic studio apartment balancing <strong>style and functionality</strong> for a student lifestyle. The open layout integrates living, sleeping, and kitchen zones with smart storage. The colour story centres on PANTONE Orange, Navy Peony, and crisp white — with a plush grey carpet and bold aesthetic pieces.
+    </p>
+    <div class="gallery-tabs">
+      <button class="gtab active" onclick="switchGallery('stu','drawings',this)">Drawings &amp; Plans</button>
+      <button class="gtab" onclick="switchGallery('stu','concept',this)">Ideation &amp; Perspective</button>
+    </div>
+
+    <div class="gallery-view active" id="gv-stu-drawings">
+      <div class="gallery-grid cols-3">
+        <div class="gitem" onclick="openLightbox('stu-drawings',0)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <span class="ph-label">Furniture Layout</span>
+            <span class="ph-path">images/studio/furniture-layout.jpg</span>
+          </div>
+          <div class="gitem-cap">Furniture Layout — AutoCAD</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('stu-drawings',1)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+            <span class="ph-label">Flooring Plan</span>
+            <span class="ph-path">images/studio/flooring-plan.jpg</span>
+          </div>
+          <div class="gitem-cap">Flooring Plan</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('stu-drawings',2)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"/></svg>
+            <span class="ph-label">Elevation — Wall A</span>
+            <span class="ph-path">images/studio/elevation-a.jpg</span>
+          </div>
+          <div class="gitem-cap">Elevation — Wall A</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('stu-drawings',3)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"/></svg>
+            <span class="ph-label">Elevation — Wall B</span>
+            <span class="ph-path">images/studio/elevation-b.jpg</span>
+          </div>
+          <div class="gitem-cap">Elevation — Wall B</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('stu-drawings',4)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"/></svg>
+            <span class="ph-label">Elevation — Wall C</span>
+            <span class="ph-path">images/studio/elevation-c.jpg</span>
+          </div>
+          <div class="gitem-cap">Elevation — Wall C</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('stu-drawings',5)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"/></svg>
+            <span class="ph-label">Elevation — Wall D</span>
+            <span class="ph-path">images/studio/elevation-d.jpg</span>
+          </div>
+          <div class="gitem-cap">Elevation — Wall D</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-view" id="gv-stu-concept">
+      <div class="gallery-grid cols-2">
+        <div class="gitem" onclick="openLightbox('stu-concept',0)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/></svg>
+            <span class="ph-label">Ideation Board — Living Room</span>
+            <span class="ph-path">images/studio/ideation-living.jpg</span>
+          </div>
+          <div class="gitem-cap">Ideation — PANTONE Orange &amp; Navy Peony Palette</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('stu-concept',1)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 6l11 7L23 6"/></svg>
+            <span class="ph-label">Perspective Drawing</span>
+            <span class="ph-path">images/studio/perspective.jpg</span>
+          </div>
+          <div class="gitem-cap">Hand-drawn One-Point Perspective View</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end studio panel -->
+
+  <!-- ── E. FURNITURE DESIGN ── -->
+  <div class="proj-panel" id="panel-furniture">
+    <div class="proj-brief">
+      <div class="brief-item"><div class="brief-label">Type</div><div class="brief-value">Furniture Design</div></div>
+      <div class="brief-item"><div class="brief-label">Pieces</div><div class="brief-value">4 Furniture Designs + Freehand</div></div>
+      <div class="brief-item"><div class="brief-label">Materials</div><div class="brief-value">MDF, Oak Veneer, Laminate, Glass, SS</div></div>
+      <div class="brief-item"><div class="brief-label">Drawings</div><div class="brief-value">Plan · Elevation · Isometric · Section</div></div>
+    </div>
+    <p style="font-size:.92rem;color:#666;line-height:1.9;margin-bottom:1.8rem;max-width:780px;">
+      A complete furniture design exercise covering four bespoke pieces from concept to production drawings — including a 3D rendered <strong>executive office desk</strong> with MDF oak veneer slats, 6mm tempered glass top, and telescopic drawer channel. Also includes multiple <strong>hand-sketched furniture studies</strong> (sofa, lounge chairs).
+    </p>
+    <div class="gallery-tabs">
+      <button class="gtab active" onclick="switchGallery('furn','cad',this)">CAD &amp; 3D Renders</button>
+      <button class="gtab" onclick="switchGallery('furn','sketches',this)">Hand Sketches</button>
+    </div>
+
+    <div class="gallery-view active" id="gv-furn-cad">
+      <div class="gallery-grid cols-2">
+        <div class="gitem span2" onclick="openLightbox('furn-cad',0)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/></svg>
+            <span class="ph-label">Office Desk — 3D Render (V-Ray)</span>
+            <span class="ph-path">images/furniture/office-desk-render.jpg</span>
+          </div>
+          <div class="gitem-cap">Executive Office Desk — MDF + Oak Veneer + 6mm Tempered Glass + Stainless Steel</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('furn-cad',1)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"/></svg>
+            <span class="ph-label">Plan, Elevations &amp; Section</span>
+            <span class="ph-path">images/furniture/office-desk-drawings.jpg</span>
+          </div>
+          <div class="gitem-cap">Plan · Front Elevation · Side Elevation · Sectional Elevation · Isometric View</div>
+        </div>
+        <div class="gitem span2" onclick="openLightbox('furn-cad',2)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"/></svg>
+            <span class="ph-label">Three Additional Furniture Drawings</span>
+            <span class="ph-path">images/furniture/furniture-drawings-set.jpg</span>
+          </div>
+          <div class="gitem-cap">Bedside Table · TV Unit · Lounge Chair — Full Drawing Sets</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-view" id="gv-furn-sketches">
+      <div class="gallery-grid cols-3">
+        <div class="gitem" onclick="openLightbox('furn-sketches',0)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <span class="ph-label">3-Seater Sofa — Freehand</span>
+            <span class="ph-path">images/furniture/sketch-sofa.jpg</span>
+          </div>
+          <div class="gitem-cap">3-Seater Sofa — Pencil Sketch</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('furn-sketches',1)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <span class="ph-label">Lounge Chair A — Freehand</span>
+            <span class="ph-path">images/furniture/sketch-lounge-a.jpg</span>
+          </div>
+          <div class="gitem-cap">Lounge Chair — Minimalist Frame</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('furn-sketches',2)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <span class="ph-label">Ghost Chair — Freehand</span>
+            <span class="ph-path">images/furniture/sketch-ghost-chair.jpg</span>
+          </div>
+          <div class="gitem-cap">Ghost Chair — Medallion Back</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end furniture panel -->
+
+  <!-- ── F. PARTICIPATION ── -->
+  <div class="proj-panel" id="panel-participation">
+    <div class="proj-brief">
+      <div class="brief-item"><div class="brief-label">Project</div><div class="brief-value">G-Town Bar</div></div>
+      <div class="brief-item"><div class="brief-label">Type</div><div class="brief-value">Live Installation · Exhibition</div></div>
+      <div class="brief-item"><div class="brief-label">Design</div><div class="brief-value">B&amp;W Checkered + Industrial</div></div>
+      <div class="brief-item"><div class="brief-label">Role</div><div class="brief-value">Design + Physical Build</div></div>
+    </div>
+    <p style="font-size:.92rem;color:#666;line-height:1.9;margin-bottom:1.8rem;max-width:780px;">
+      A live participation project where the team designed and physically built a miniature bar — <strong>G-Town Bar</strong> — for an INIFD exhibition. Features a bold black-and-white checkered wall, egg-carton acoustic panels, a DIY bar counter, crystal chandelier, and bar stools made from recycled materials. Presented to judges and industry visitors.
+    </p>
+    <div class="gallery-tabs">
+      <button class="gtab active" onclick="switchGallery('part','all',this)">Photos &amp; Process</button>
+    </div>
+    <div class="gallery-view active" id="gv-part-all">
+      <div class="gallery-grid cols-3">
+        <div class="gitem span2" onclick="openLightbox('part-all',0)">
+          <div class="img-placeholder wide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-label">Finished Bar — G-Town Bar</span>
+            <span class="ph-path">images/participation/g-town-bar-final.jpg</span>
+          </div>
+          <div class="gitem-cap">G-Town Bar — Final Installation</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('part-all',1)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-label">Build Process</span>
+            <span class="ph-path">images/participation/build-process.jpg</span>
+          </div>
+          <div class="gitem-cap">Build Process — Planning &amp; Setup</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('part-all',2)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+            <span class="ph-label">Team Photo with Judges</span>
+            <span class="ph-path">images/participation/team-photo.jpg</span>
+          </div>
+          <div class="gitem-cap">Team &amp; Judges — Exhibition Day</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('part-all',3)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+            <span class="ph-label">Visitors at the Installation</span>
+            <span class="ph-path">images/participation/visitors.jpg</span>
+          </div>
+          <div class="gitem-cap">Industry Visitors at the Space</div>
+        </div>
+        <div class="gitem" onclick="openLightbox('part-all',4)">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+            <span class="ph-label">Detail — Checkered Wall</span>
+            <span class="ph-path">images/participation/wall-detail.jpg</span>
+          </div>
+          <div class="gitem-cap">B&amp;W Checkered Feature Wall + Crystal Chandelier</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end participation panel -->
+
+  <!-- ── GITHUB IMAGE GUIDE ── -->
+  <div class="gh-guide fade-up">
+    <div class="gh-guide-header" onclick="toggleGuide(this)">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <h4>How to add your real project photos — GitHub Pages setup guide</h4>
+      <span class="gh-badge">Click to expand</span>
+    </div>
+    <div class="gh-guide-body" id="gh-body">
+      <p style="font-size:.9rem;color:#666;margin-bottom:1.6rem;line-height:1.8;">
+        Each image card above shows a placeholder with the exact file path you need to save your photo to. Once the images are in the right folders in your GitHub repo, they'll appear automatically. Follow these steps:
+      </p>
+      <div class="gh-steps">
+        <div class="gh-step">
+          <div class="gh-step-num">1</div>
+          <div class="gh-step-content">
+            <h5>Create your folder structure in your repo</h5>
+            <p>Inside your GitHub repository (the one that contains <code style="display:inline;background:rgba(0,0,0,.06);color:var(--dark);padding:.1rem .4rem;border-radius:3px;font-size:.8rem;">index.html</code>), create an <code style="display:inline;background:rgba(0,0,0,.06);color:var(--dark);padding:.1rem .4rem;border-radius:3px;font-size:.8rem;">images/</code> folder with sub-folders for each project:</p>
+            <code>images/<br/>
+├── <span>workspace/</span>       ← Workspace project photos<br/>
+├── <span>hospitality/</span>     ← Kalsang Restaurant photos<br/>
+├── <span>duplex/</span>          ← Duplex 3BHK photos<br/>
+├── <span>studio/</span>          ← Studio Apartment photos<br/>
+├── <span>furniture/</span>       ← Furniture Design photos<br/>
+└── <span>participation/</span>   ← G-Town Bar photos</code>
+          </div>
+        </div>
+        <div class="gh-step">
+          <div class="gh-step-num">2</div>
+          <div class="gh-step-content">
+            <h5>Export / screenshot pages from your portfolio PDF</h5>
+            <p>Open your portfolio PDF. Take screenshots of each drawing, render or concept board — or export pages as JPG/PNG from Adobe Acrobat (File → Export → Image). Name each file exactly as shown in the grey label on each placeholder card (e.g. <code style="display:inline;background:rgba(0,0,0,.06);color:var(--dark);padding:.1rem .4rem;border-radius:3px;font-size:.8rem;">arch-layout.jpg</code>). Keep filenames lowercase with hyphens.</p>
+            <div class="note">💡 Tip: Aim for images around 1200–1800px wide. Compress them at <a href="https://squoosh.app" target="_blank" style="color:var(--terr)">squoosh.app</a> before uploading to keep your site fast.</div>
+          </div>
+        </div>
+        <div class="gh-step">
+          <div class="gh-step-num">3</div>
+          <div class="gh-step-content">
+            <h5>Upload images to GitHub</h5>
+            <p>Go to your GitHub repo → navigate into the correct folder → click <strong>Add file → Upload files</strong> → drag in your images → scroll down → click <strong>Commit changes</strong>.</p>
+            <code><span># Or using Git CLI:</span><br/>
+git add images/<br/>
+git commit -m "Add project portfolio images"<br/>
+git push origin main</code>
+          </div>
+        </div>
+        <div class="gh-step">
+          <div class="gh-step-num">4</div>
+          <div class="gh-step-content">
+            <h5>Replace placeholders in the HTML with real &lt;img&gt; tags</h5>
+            <p>Find any placeholder block like this in the code and swap it for a real image tag. The path shown on the card is exactly what you put in the <code style="display:inline;background:rgba(0,0,0,.06);color:var(--dark);padding:.1rem .4rem;border-radius:3px;font-size:.8rem;">src</code> attribute.</p>
+            <code><span>&lt;!-- BEFORE (placeholder) --&gt;</span><br/>
+&lt;div class="img-placeholder wide"&gt;...&lt;/div&gt;<br/><br/>
+<span>&lt;!-- AFTER (real image) --&gt;</span><br/>
+&lt;img class="gitem-img wide"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; src="<span>images/workspace/arch-layout.jpg</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; alt="Workspace Architectural Layout"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; loading="lazy" /&gt;</code>
+            <div class="note">💡 Click any image card to open it in the lightbox — it works for both placeholders and real images.</div>
+          </div>
+        </div>
+        <div class="gh-step">
+          <div class="gh-step-num">5</div>
+          <div class="gh-step-content">
+            <h5>Update the lightbox image source too</h5>
+            <p>Each gallery item calls <code style="display:inline;background:rgba(0,0,0,.06);color:var(--dark);padding:.1rem .4rem;border-radius:3px;font-size:.8rem;">openLightbox()</code>. The lightbox pulls the image from the <code style="display:inline;background:rgba(0,0,0,.06);color:var(--dark);padding:.1rem .4rem;border-radius:3px;font-size:.8rem;">src</code> attribute of the <code style="display:inline;background:rgba(0,0,0,.06);color:var(--dark);padding:.1rem .4rem;border-radius:3px;font-size:.8rem;">&lt;img&gt;</code> automatically. You don't need to change the JS — just replace the placeholder div with your &lt;img&gt; tag as shown above and everything works.</p>
+            <code><span># Your final repo structure should look like:</span><br/>
+your-repo/<br/>
+├── <span>index.html</span><br/>
+└── images/<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;├── workspace/<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span>arch-layout.jpg</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span>furniture-layout.jpg</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span>3d-reception.jpg</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;├── hospitality/<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span>3d-main-dining.jpg</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;└── ...</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end gh-guide -->
+
+</section>
+
+<!-- ════════ LIGHTBOX ════════ -->
+<div class="lb-overlay" id="lb-overlay" onclick="closeLb(event)">
+  <div class="lb-box">
+    <button class="lb-close" onclick="closeLb()">✕</button>
+    <button class="lb-prev" onclick="lbNav(-1)">‹</button>
+    <img class="lb-img" id="lb-img" src="" alt="" />
+    <p class="lb-caption" id="lb-caption"></p>
+    <button class="lb-next" onclick="lbNav(1)">›</button>
+  </div>
+</div>
+
+<!-- ════════ EXPERIENCE ════════ -->
+<section id="experience">
+  <p class="section-label">Career Journey</p>
+  <h2 class="section-title">Experience</h2>
+  <div class="timeline">
+    <div class="timeline-item fade-up">
+      <div class="timeline-dot"></div>
+      <p class="timeline-date">Nov 2023 — Jan 2024</p>
+      <h3>Interior Design Intern</h3>
+      <h4>Finearch Studio Pvt Ltd</h4>
+      <p>
+        Accumulated valuable hands-on experience contributing to a diverse portfolio of
+        residential and commercial projects. Collaborated with the design team on concept
+        development, space planning, and client presentations — strengthening both
+        technical skills and professional communication abilities.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ EDUCATION ════════ -->
+<section id="education">
+  <p class="section-label">Academic Background</p>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-grid">
+    <div class="edu-card fade-up">
+      <p class="edu-year">2021 — 2024</p>
+      <h3>Bachelor of Interior Design</h3>
+      <p>Medhavi University, Sikkim</p>
+    </div>
+    <div class="edu-card fade-up">
+      <p class="edu-year">2021 — 2024</p>
+      <h3>3-Year Specialisation in Interior Design</h3>
+      <p>INIFD, Gurugram</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CONTACT ════════ -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p class="section-label">Let's Connect</p>
+      <h2 class="section-title">Get in Touch</h2>
+      <p>
+        I'm always open to exciting design opportunities, collaborations, and
+        conversations about space and creativity. Feel free to reach out!
+      </p>
+      <div class="contact-list">
+        <a href="tel:+916398568668" class="contact-item">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.94a16 16 0 0 0 6.15 6.15l.95-.94a2 2 0 0 1 2.11-.45c.908.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          +91 63985 68668
+        </a>
+        <a href="mailto:asthakohli.id@gmail.com" class="contact-item">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </span>
+          asthakohli.id@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/astha-kohli-366909233" target="_blank" rel="noopener" class="contact-item">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </span>
+          linkedin.com/in/astha-kohli-366909233
+        </a>
+        <span class="contact-item">
+          <span class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          Prerna Sadan, Raksha Vihar, Dehradun — 248001
+        </span>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form" onsubmit="handleForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" placeholder="Project enquiry" />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="5" placeholder="Tell me about your project…" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <span class="footer-logo">Astha Kohli</span>
+  <p>© 2024 Astha Kohli · Interior Designer · Dehradun, India</p>
+</footer>
+
+<!-- ════════ SCRIPTS ════════ -->
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  }));
+
+  // Intersection Observer for fade-up + skill bars
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        entry.target.querySelectorAll('.skill-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width;
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18 });
+  document.querySelectorAll('.fade-up, .skill-group').forEach(el => observer.observe(el));
+
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width;
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skill-group').forEach(el => barObserver.observe(el));
+
+  // Contact form
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#4caf7d';
+    btn.style.borderColor = '#4caf7d';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+      e.target.reset();
+    }, 3000);
+  }
+
+  // ── PROJECT TABS ──
+  function switchProject(id, btn) {
+    document.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.proj-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // ── GALLERY INNER TABS ──
+  function switchGallery(proj, view, btn) {
+    const panel = btn.closest('.proj-panel');
+    panel.querySelectorAll('.gallery-view').forEach(v => v.classList.remove('active'));
+    panel.querySelectorAll('.gtab').forEach(t => t.classList.remove('active'));
+    document.getElementById('gv-' + proj + '-' + view).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // ── LIGHTBOX ──
+  let lbItems = [];
+  let lbIndex = 0;
+
+  function openLightbox(galleryId, idx) {
+    // Collect all gitem elements in the currently active gallery-view
+    // that belong to this gallery (the parent of the clicked item)
+    const gv = document.getElementById('gv-' + galleryId);
+    if (!gv) return;
+    const items = Array.from(gv.querySelectorAll('.gitem'));
+    lbItems = items.map(item => {
+      const img = item.querySelector('img.gitem-img');
+      const cap = item.querySelector('.gitem-cap');
+      if (img) {
+        return { src: img.src, alt: img.alt, cap: cap ? cap.textContent : '' };
+      } else {
+        // placeholder — show the ph-label and ph-path as info
+        const label = item.querySelector('.ph-label');
+        const path  = item.querySelector('.ph-path');
+        return {
+          src: '',
+          alt: label ? label.textContent : 'Image',
+          cap: (cap ? cap.textContent : '') + (path ? '  •  Add photo: ' + path.textContent : '')
+        };
+      }
+    });
+    lbIndex = idx;
+    renderLb();
+    document.getElementById('lb-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function renderLb() {
+    const item = lbItems[lbIndex];
+    const img = document.getElementById('lb-img');
+    const cap = document.getElementById('lb-caption');
+    if (item.src) {
+      img.src = item.src;
+      img.alt = item.alt;
+      img.style.display = 'block';
+    } else {
+      img.src = '';
+      img.style.display = 'none';
+    }
+    cap.innerHTML = item.cap +
+      (lbItems.length > 1 ? `<br/><span style="color:rgba(255,255,255,.35);font-size:.75rem;">${lbIndex+1} / ${lbItems.length}</span>` : '');
+    // Show placeholder message if no image
+    let ph = document.getElementById('lb-placeholder');
+    if (!ph) {
+      ph = document.createElement('div');
+      ph.id = 'lb-placeholder';
+      ph.style.cssText = 'color:rgba(255,255,255,.5);font-size:.9rem;padding:4rem;text-align:center;border:1.5px dashed rgba(255,255,255,.2);border-radius:12px;min-width:300px;';
+      img.parentNode.insertBefore(ph, img);
+    }
+    if (!item.src) {
+      ph.style.display = 'block';
+      const pathText = item.cap.includes('Add photo:') ? item.cap.split('Add photo:')[1].trim() : '';
+      ph.innerHTML = `<div style="font-size:2.5rem;margin-bottom:1rem;">🖼️</div>
+        <strong style="color:rgba(255,255,255,.8);">${item.alt}</strong><br/>
+        <span style="font-size:.75rem;margin-top:.6rem;display:block;">To show your real image here, save it to:<br/>
+        <code style="color:#c9a96e;font-family:monospace;">${pathText}</code><br/>then replace the placeholder div with an &lt;img&gt; tag.</span>`;
+    } else {
+      ph.style.display = 'none';
+    }
+  }
+
+  function lbNav(dir) {
+    lbIndex = (lbIndex + dir + lbItems.length) % lbItems.length;
+    renderLb();
+  }
+
+  function closeLb(e) {
+    if (!e || e.target === document.getElementById('lb-overlay')) {
+      document.getElementById('lb-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lb-overlay').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb({});
+    if (e.key === 'ArrowRight') lbNav(1);
+    if (e.key === 'ArrowLeft') lbNav(-1);
+  });
+
+  // ── GITHUB GUIDE TOGGLE ──
+  function toggleGuide(header) {
+    const body = document.getElementById('gh-body');
+    const badge = header.querySelector('.gh-badge');
+    const isOpen = body.classList.toggle('open');
+    badge.textContent = isOpen ? 'Click to collapse' : 'Click to expand';
+  }
+</script>
+</body>
+</html>
